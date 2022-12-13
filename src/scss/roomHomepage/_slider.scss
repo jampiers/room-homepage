@@ -1,0 +1,156 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.slider {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    &__btns {
+        position: absolute;
+        top: 30.035rem;
+        right: 0;
+        width: 12rem;
+        height: 6rem;
+        display: flex;
+        z-index: 1;
+
+        @include m.tablet { 
+            top: 33.77rem;
+        }
+
+        @include m.tablet-xl { 
+            top: unset;
+            bottom: 0;
+            left: 58.3%;
+            width: 16rem;
+            height: 8rem;
+        }
+    }
+
+    &__btn-anterior,
+    &__btn-siguiente {
+        position: relative;
+        flex: 1;
+        background-color: v.$black;
+        transition-property: background-color;
+        transition-duration: .2s;
+
+        
+        &:hover {
+            background-color: v.$veryDarkGray;
+        }
+
+        &::before {
+            content: '';
+            width: 2rem;
+            height: 2rem;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url(../img/icon-angle-left.svg);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+    }
+
+    &__btn-siguiente {
+        &::before {
+            background-image: url(../img/icon-angle-right.svg);
+        }
+    }
+
+    &__div {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition-property: opacity;
+        transition-duration: .3s;
+        pointer-events: none;
+
+        &--mostrar {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        @include m.tablet-xl { 
+            display: grid;
+            grid-template-columns: 58.3% 41.7%;
+            grid-template-rows: 53.5rem;
+        }
+    }
+
+    &__img-c  {
+        height: 46.8%;
+
+        @include m.tablet-xl { 
+            height: 100%;
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__info-c {
+        padding: 0 2.5rem;
+        height: 53.2%;
+        background-color: v.$white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include m.tablet-xl { 
+            height: 100%;
+            padding: 0 3rem;
+        }
+
+        @include m.desktop { 
+            padding: 0;
+        }
+    }
+
+    &__info {
+        width: 31.2rem;
+
+        @include m.tablet { 
+            width: 38rem;
+        }
+
+        @include m.tablet-xl { 
+            width: 40.5rem;
+        }
+    }
+
+    &__comprar {
+        margin-top: 3.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 2rem;
+        font-size: 1.5rem;
+        letter-spacing: 1.3rem;
+        text-transform: uppercase;
+        color: v.$black;
+        transition-property: color;
+        transition-duration: .3s;
+
+        &:hover {
+            color: v.$veryDarkGray;
+        }
+
+        svg path {
+            transition: all .3s;
+        }
+
+        &:hover svg path {
+            fill: v.$veryDarkGray;
+        }
+    }
+}

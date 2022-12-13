@@ -1,0 +1,71 @@
+@use 'variables' as v; 
+@use 'mixins' as m; 
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: v.$font;
+    font-size: 1.52rem;
+    color: v.$darkGray;
+    font-weight: 500;
+
+    @include m.tablet { 
+        font-size: 1.5rem;
+    }
+}
+
+p {
+    line-height: 1.5;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+h2, h3 {
+    margin: 0 0 2rem 0;
+    font-family: v.$font;
+    color: v.$black;
+    font-weight: 700;
+    line-height: 1;
+
+}
+
+h2 {
+    font-size: 3.5rem;
+
+    @include m.tablet { 
+        font-size: 4rem;
+    }
+}
+
+h3 {
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+
+    @include m.tablet { 
+        font-size: 1.8rem;
+        letter-spacing: 0.8rem;
+    }
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    &:hover {
+        cursor: pointer;
+    }
+}

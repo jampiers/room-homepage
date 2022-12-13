@@ -1,0 +1,149 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.header {
+    height: 77rem;
+    position: relative;
+
+    @include m.tablet { 
+        height: 85rem;
+    }
+
+    @include m.tablet-xl { 
+        height: 53.5rem;
+    }
+
+    &__barra {
+        padding: 0 2.5rem;
+        height: 11rem;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+
+        @include m.tablet { 
+            justify-content: space-between;
+            padding: 0 3.5rem;
+        }
+
+        @include m.tablet-xl { 
+            justify-content: unset;
+            gap: 5rem;
+            padding: 0 6rem;
+        }
+    }
+
+    &__logo {
+        margin: 0 auto;
+
+        @include m.tablet { 
+            margin: 0;
+        }
+    }
+
+    &__btn,
+    &__btn-telefono {
+        width: 2rem;
+        height: 2rem;
+        background-size: cover;
+        background-position: center;
+        background-image: url(../img/icon-hamburger.svg);
+    }
+
+    &__btn {
+        @include m.tablet { 
+            display: none;
+        }
+    }
+
+    &__barra-telefono {
+        padding: 0 2.5rem;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: -100%;
+        height: 11rem;
+        background-color: v.$white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition-property: left;
+        transition-duration: .3s;
+        z-index: 2;
+
+        &--mostrar {
+            left: 0;
+        }
+
+        @include m.tablet { 
+            display: none;
+        }
+    }
+
+    &__btn-telefono {
+        background-image: url(../img/icon-close.svg);
+    }
+
+    &__overlay {
+        position: static;
+        top: 11rem;
+        left: -100%;
+        right: 0;
+        bottom: 0;
+        background-color: transparentize(v.$black, .3%);
+        transition-property: left;
+        transition-duration: .3s;
+
+        &--mostrar {
+            position: fixed;
+            left: 0%;
+        }
+    }
+}
+
+.nav {
+    display: none;
+
+    @include m.tablet { 
+        display: flex;
+        align-items: center;
+        gap: 4.8rem;
+    }
+
+    &__enlace {
+        color: v.$white;
+        position: relative;
+
+        &::before {
+            content: '';
+            width: 50%;
+            height: .1rem;
+            background-color: v.$white;
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition-property: opacity;
+            transition-duration: .2s;
+        }
+
+        &:hover::before {
+            opacity: 1;
+        }
+    }
+}
+
+.nav-telefono {
+    display: flex;
+    align-items: center;
+    gap: 2.8rem;
+
+    &__enlace {
+        font-weight: 600;
+        color: v.$black;
+        font-size: 1.5rem;
+    }   
+}
